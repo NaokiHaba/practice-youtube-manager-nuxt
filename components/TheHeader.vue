@@ -1,19 +1,26 @@
 <template>
-  <nav class="navbar">
-    <div class="navbar-brand">
-      <nuxt-link
-        class="navbar-item subtitle is-4"
-        to="/"
-      >
-        Youtube Player
+  <v-app-bar app>
+    <v-toolbar-title>
+      <nuxt-link :to=to>
+        {{ title }}
       </nuxt-link>
-    </div>
-
-  </nav>
+    </v-toolbar-title>
+  </v-app-bar>
 </template>
 
 <script>
 export default {
+  name: "TheHeader",
 
+  props: {
+    title: {
+      type: String,
+      default: "Youtube Player"
+    },
+    to: {
+      type: String,
+      default: "/"
+    }
+  }
 }
 </script>

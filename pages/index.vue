@@ -1,28 +1,29 @@
 <template>
-  <section class="section">
-    <div class="container">
-      <div class="block">
-        <div class="block video-block" v-for="item in items">
-          <AppVideo
-            :item="item"
-            :video-id="item.id"
-          />
-        </div>
-      </div>
-
-      <div class="block">
-        <nav class="pagination">
-          <a
-            href.prevent="#"
-            class="pagination-next"
-            @click="loadMore"
+  <v-app>
+    <v-main>
+      <v-container>
+        <v-row>
+          <v-col
+            v-for="item in items"
+            :key="item.id"
+            cols="3"
           >
-            More
-          </a>
-        </nav>
-      </div>
-    </div>
-  </section>
+            <v-card height="200">
+              <v-img
+                :src="item.snippet.thumbnails.medium.url"
+                height="200"
+              />
+            </v-card>
+          </v-col>
+        </v-row>
+      </v-container>
+    </v-main>
+    <v-btn
+      @click="loadMore"
+    >
+      Load More
+    </v-btn>
+  </v-app>
 </template>
 
 
@@ -45,6 +46,17 @@ export default {
     },
     nextPageToken() {
       return this.$store.getters.getMeta.nextPageToken;
+    }
+  },
+  filters: {
+    omit: (value) => {
+      if (!value) {
+        return '';
+      }
+      if (value.length > 120) {
+        return value.substr(0, 120) + '...';
+      }
+      return value;
     }
   },
 
@@ -74,10 +86,3 @@ export default {
   },
 }
 </script>
-
-<style scoped>
-.video-block {
-  max-width: 900px;
-}
-
-</style>

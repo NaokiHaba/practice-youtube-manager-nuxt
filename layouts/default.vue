@@ -1,15 +1,11 @@
 <template>
-  <div id="app">
+  <v-app>
     <TheHeader/>
 
-    <div class="columns">
-      <TheSidebar/>
+    <TheSidebar/>
 
-      <div class="column content">
-        <nuxt/>
-      </div>
-    </div>
-  </div>
+    <nuxt/>
+  </v-app>
 </template>
 
 <script>
@@ -23,14 +19,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-#app {
-  min-height: 100vh;
-  background: #FAFAFA;
-}
-
-.columns {
-  min-height: 100vh;
-}
-</style>
